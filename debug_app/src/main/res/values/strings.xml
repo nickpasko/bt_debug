@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Bluetooth_Debug</string>
+    <string name="title_command_detail">Command Detail</string>
+</resources>
