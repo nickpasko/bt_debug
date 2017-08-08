@@ -14,11 +14,11 @@ public class BtDevicesContent {
 
     public static void addDevice(BtDevice device) {
         devices.add(device);
-        device_map.put(device.uuid, device);
+        device_map.put(device.mac, device);
     }
 
-    public static void addDevice(String uuids, String name, String deviceHardwareAddress) {
-        addDevice(new BtDevice(uuids, name, deviceHardwareAddress));
+    public static void addDevice(String name, String deviceHardwareAddress) {
+        addDevice(new BtDevice(name, deviceHardwareAddress));
     }
 
     private static String makeDetails(int position) {
@@ -30,8 +30,8 @@ public class BtDevicesContent {
         return builder.toString();
     }
 
-    public static BtDevice getDeviceById(String uuid) {
-        return device_map.get(uuid);
+    public static BtDevice getDeviceById(String mac) {
+        return device_map.get(mac);
     }
 
     public static void addAll(List<BtDevice> newDevices) {

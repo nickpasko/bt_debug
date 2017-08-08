@@ -106,7 +106,7 @@ public class CommandListActivity extends AppCompatActivity {
                 String deviceName = device.getName();
                 String deviceHardwareAddress = device.getAddress(); // MAC address
                 ParcelUuid[] uuids = device.getUuids();
-                devices.add(new BtDevice(uuids[0].getUuid().toString(), deviceName, deviceHardwareAddress));
+                devices.add(new BtDevice(deviceName, deviceHardwareAddress));
             }
         }
         return devices;
@@ -131,7 +131,7 @@ public class CommandListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).uuid);
+            holder.mIdView.setText(mValues.get(position).mac);
             holder.mContentView.setText(mValues.get(position).name);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +139,7 @@ public class CommandListActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(CommandDetailFragment.ARG_ITEM_ID, holder.mItem.uuid);
+                        arguments.putString(CommandDetailFragment.ARG_ITEM_ID, holder.mItem.mac);
                         CommandDetailFragment fragment = new CommandDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -148,7 +148,7 @@ public class CommandListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, CommandDetailActivity.class);
-                        intent.putExtra(CommandDetailFragment.ARG_ITEM_ID, holder.mItem.uuid);
+                        intent.putExtra(CommandDetailFragment.ARG_ITEM_ID, holder.mItem.mac);
 
                         context.startActivity(intent);
                     }
